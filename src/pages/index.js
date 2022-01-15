@@ -1,0 +1,11 @@
+export { default as Layout } from './Layout';
+export { default as HomePage } from './HomePage';
+export { default as CloudServicePage } from './CloudServicePage';
+export { default as CloudReviewsPage } from './CloudReviewsPage';
+export { default as AddReviewPage } from './AddReviewPage';
+export { default as ProfilePage } from './ProfilePage';
+export { default as EditProfilePage } from './EditProfilePage';
+export { default as ProfilePrivacyPage } from './ProfilePrivacyPage';
+export { default as ProfileReviewsPage } from './ProfileReviewsPage';
+export { default as AuthPage } from './AuthPage';
+export { default as EditReviewPage } from './EditReviewPage';
