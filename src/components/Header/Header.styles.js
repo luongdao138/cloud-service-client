@@ -49,6 +49,13 @@ export const Container = styled.div`
     align-items: center;
   }
 
+  .saved-products {
+    margin-left: 1rem;
+    @media (max-width: 780px) {
+      margin-left: 0;
+    }
+  }
+
   .heart {
     margin-left: 0.5rem;
     padding: 0.35rem 0.5rem;
@@ -73,6 +80,43 @@ export const Container = styled.div`
   }
 
   .header-left {
+    .search {
+      position: relative;
+      input {
+        width: 200px;
+        padding: 0.25rem 0.65rem;
+        padding-right: calc(0.73rem + 33px);
+        border-radius: 4px;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        font-size: 1.2rem;
+        transition: all 0.25s ease-in-out;
+
+        &:focus {
+          box-shadow: 0 0 2px #2ab0fc;
+          border-color: #2ab0fc;
+        }
+
+        &:focus {
+          width: 400px;
+        }
+      }
+      & > svg {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        /* right: 10px; */
+        z-index: 100;
+        right: 10px;
+        font-size: 19px;
+        color: #000;
+      }
+
+      @media (max-width: 780px) {
+        display: none;
+      }
+    }
+
     @media (max-width: 780px) {
       background-color: #002269;
       position: fixed;

@@ -67,6 +67,18 @@ export const Container = styled.div`
           }
         }
       }
+
+      .new {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+        svg.heart {
+          font-size: 1.5rem;
+          color: #26b79a;
+          cursor: pointer;
+        }
+      }
+
       .write-review {
         display: flex;
         align-items: center;

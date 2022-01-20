@@ -107,7 +107,43 @@ const EditProfilePage = () => {
   };
 
   const handleSubmit = (values, helpers) => {
-    mutate({ ...values, _id: user._id });
+    let body = {
+      _id: user._id,
+      name: values.name,
+      job_title: values.job_title,
+      location: {},
+      company: {},
+    };
+
+    if (values.job_role) {
+      body.job_role = values.job_role;
+    }
+
+    if (values.location.province) {
+      body.location.province = values.location.province;
+    }
+
+    if (values.location.district) {
+      body.location.district = values.location.district;
+    }
+
+    if (values.location.ward) {
+      body.location.ward = values.location.ward;
+    }
+
+    if (values.company.size) {
+      body.company.size = values.company.size;
+    }
+
+    if (values.company.industry) {
+      body.company.industry = values.company.industry;
+    }
+
+    if (values.company.name) {
+      body.company.name = values.company.name;
+    }
+
+    mutate(body);
   };
 
   useEffect(() => {

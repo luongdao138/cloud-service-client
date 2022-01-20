@@ -2,6 +2,7 @@ import { useContext, useReducer, createContext, useEffect } from 'react';
 import { useRouter } from '../hooks';
 import { useQuery } from 'react-query';
 import { getCloudReviews } from '../api/cloud';
+import { useState } from 'react';
 
 const ReviewsActionContext = createContext();
 
@@ -93,11 +94,12 @@ const convertParams = (state) => {
 const ReviewActionsProvider = ({ children }) => {
   const { query } = useRouter();
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [cloudId, setCloudId] = useState(query.cloudId);
   const params = convertParams(state);
 
   const { data, isLoading, isError, error, isPreviousData } = useQuery(
-    ['reviews', 'list', params],
-    () => getCloudReviews(query.cloudId, params),
+    ['reviews', 'list', { ...params, cloudId }],
+    () => getCloudReviews(cloudId, params),
     {
       staleTime: 60 * 1000,
       retry: 1,
@@ -130,7 +132,8 @@ const ReviewActionsProvider = ({ children }) => {
         ...state,
         dispatch,
         total_filters,
-        cloudId: query.cloudId,
+        cloudId,
+        setCloudId,
         reviews: data?.reviews,
         isLoading,
         isError,

@@ -38,20 +38,24 @@ const ReviewItem = ({ review }) => {
             <div className='right'>
               <span>
                 {review.user.is_private
-                  ? review.user.job_role.title
+                  ? review.user.job_role
+                    ? review.user.job_role?.title
+                    : ''
                   : review.user.name
                   ? review.user.name
                   : 'Verified User'}
               </span>
               <span>
                 {review.user.is_private
-                  ? `${review.user?.company?.industry.title} company`
-                  : review.user.job_role.title}
+                  ? review.user?.company?.industry &&
+                    `${review.user?.company?.industry?.title} company`
+                  : review.user.job_role?.title || ''}
               </span>
               <span>
                 {review.user.is_private
-                  ? `with ${review.user?.company?.size.title}`
-                  : `${review.user.company.industry.title} Company, ${review.user.company.size.title}`}
+                  ? review.user?.company?.size && `with ${review.user?.company?.size?.title}`
+                  : review.user.company?.industry &&
+                    `${review.user.company?.industry?.title} Company, ${review.user.company?.size?.title}`}
               </span>
             </div>
           </div>

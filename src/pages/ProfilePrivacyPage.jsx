@@ -51,13 +51,15 @@ const ProfilePrivacyPage = () => {
             <p className='name'>{!toggled ? user?.name : fullUser?.job_role?.title}</p>
             <p className='job_title'>
               {!toggled
-                ? fullUser?.job_role?.title
-                : `${fullUser?.company?.industry.title} company`}
+                ? fullUser?.job_role?.title || ''
+                : fullUser?.company?.industry && `${fullUser?.company?.industry.title} company`}
             </p>
             <p>
               {!toggled
-                ? `${fullUser?.job_title} - ${fullUser?.company?.industry.title}, ${fullUser?.company?.size.title}`
-                : `with ${fullUser?.company?.size.title}`}
+                ? fullUser?.job_title && fullUser?.company?.industry
+                  ? `${fullUser?.job_title} - ${fullUser?.company?.industry.title}, ${fullUser?.company?.size.title}`
+                  : ''
+                : fullUser?.company?.size && `with ${fullUser?.company?.size.title}`}
             </p>
           </div>
         </div>

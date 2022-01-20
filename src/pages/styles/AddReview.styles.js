@@ -55,10 +55,11 @@ export const Container = styled.div`
         margin-bottom: 0.5rem;
         color: #31313c;
       }
-
-      svg {
-        font-size: 1.5rem;
-        color: rgb(242, 199, 26);
+      .ratings {
+        svg {
+          font-size: 1.5rem;
+          color: rgb(242, 199, 26);
+        }
       }
     }
   }

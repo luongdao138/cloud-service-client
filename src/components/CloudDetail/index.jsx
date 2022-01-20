@@ -8,9 +8,15 @@ import { useQuery } from 'react-query';
 import { getCloudDetail } from '../../api/cloud';
 import { convertAverageRating, convertRatingDistribution } from '../../helpers/convertNumber';
 import CloudDetailSkeleton from './CloudDetailSkeleton';
+import { BsFillHeartFill } from 'react-icons/bs';
+import { useRouter } from '../../hooks';
+import { useEffect } from 'react';
 
 const CloudDetail = () => {
-  const { cloudId } = useReviewContext();
+  const { setCloudId } = useReviewContext();
+  const {
+    query: { cloudId },
+  } = useRouter();
   const {
     data: cloud,
     isLoading,
@@ -22,6 +28,10 @@ const CloudDetail = () => {
     select: (data) => data.cloud,
     notifyOnChangeProps: 'tracked',
   });
+
+  useEffect(() => {
+    setCloudId(cloudId);
+  }, [cloudId]);
 
   if (isLoading) {
     return <CloudDetailSkeleton />;
@@ -63,10 +73,13 @@ const CloudDetail = () => {
               {cloud.stats.review_count} {cloud.stats.review_count > 1 ? 'Ratings' : 'Rating'}
             </span>
           </div>
-          <Link to={`/reviews/new?cloud_id=${cloud._id}`} className='write-review'>
-            <FiEdit />
-            <span>Write a Reivew</span>
-          </Link>
+          <div className='new'>
+            <Link to={`/reviews/new?cloud_id=${cloud._id}`} className='write-review'>
+              <FiEdit />
+              <span>Write a Reivew</span>
+            </Link>
+            <BsFillHeartFill className='heart' />
+          </div>
           <div className='vendor'>
             <span>Do you work for this company?</span>
             <Link to='/'>Learn how we help vendors</Link>

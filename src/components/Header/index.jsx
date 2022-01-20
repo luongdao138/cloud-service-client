@@ -1,15 +1,17 @@
 import { Link } from 'react-router-dom';
 import logo from '../../assets/header_logo.png';
-import { IoMdHeart } from 'react-icons/io';
+import { IoMdHeart, IoMdSearch } from 'react-icons/io';
 import { Container, MenuButton } from './Header.styles';
 import { useToggle, useLockScreen, useRouter } from '../../hooks';
 import { actions, useAuthContext } from '../../context/AuthContext';
 import HeaderUser from '../HeaderUser';
+import { useState } from 'react';
 
 const Header = () => {
   const router = useRouter();
   const { user, dispatch } = useAuthContext();
   const [openMenu, toggle] = useToggle();
+  const [value, setValue] = useState('');
   useLockScreen(openMenu);
 
   const handleWriteReview = (e) => {
@@ -41,6 +43,12 @@ const Header = () => {
     });
   };
 
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (!value) return;
+    router.push(`/clouds?search=${value}`);
+  };
+
   return (
     <>
       <Container open={openMenu}>
@@ -51,13 +59,26 @@ const Header = () => {
           </Link>
           <div style={{ flexGrow: 1 }}></div>
           <div className='header-left'>
-            <div className='saved-products'>
-              <span className='label'>Saved Products</span>
-              <span className='heart'>
-                <IoMdHeart />
-                <span>4</span>
-              </span>
-            </div>
+            {router.pathname !== '/' && (
+              <form className='search' onSubmit={handleSearch}>
+                <input
+                  value={value}
+                  onChange={(e) => setValue(e.target.value)}
+                  type='text'
+                  placeholder='Search...'
+                />
+                <IoMdSearch />
+              </form>
+            )}
+            {user?._id && (
+              <div className='saved-products'>
+                <span className='label'>Saved Products</span>
+                <span className='heart'>
+                  <IoMdHeart />
+                  <span>{user?.favorite_products?.length}</span>
+                </span>
+              </div>
+            )}
             <div className='nav'>
               <Link to='/reviews/new' onClick={handleWriteReview}>
                 Write a Review

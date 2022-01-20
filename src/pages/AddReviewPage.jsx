@@ -24,8 +24,6 @@ const AddReviewPage = () => {
   const [rating, setRating] = useState(null);
   const queryClient = useQueryClient();
 
-  console.log(location);
-
   useAuth(pathname + location.search || '');
 
   const asyncOptions = async (value) => {
