@@ -71,7 +71,8 @@ const Authentication = ({ authPage }) => {
           <span>Sign in with LinkedIn</span>
         </button> */}
         <GoogleLogin
-          clientId='290912695082-5v9jqpb177cvnvtcpv3q30sb29s1flal.apps.googleusercontent.com'
+          // clientId='290912695082-5v9jqpb177cvnvtcpv3q30sb29s1flal.apps.googleusercontent.com'
+          clientId='290912695082-3ekhf56e8hr53flpvo53gma2ql5d51e4.apps.googleusercontent.com'
           onSuccess={googleLoginSuccess}
           onFailure={googleLoginFail}
           cookiePolicy={'single_host_origin'}
