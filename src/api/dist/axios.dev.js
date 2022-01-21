@@ -11,7 +11,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "d
 
 var instance = _axios["default"].create({
   // baseURL: 'http://localhost:5000/api/v1',
-  baseURL: 'https://luong-cloud-service.herokuapp.com'
+  baseURL: 'https://luong-cloud-service.herokuapp.com/api/v1'
 });
 
 instance.interceptors.request.use(function (config) {
